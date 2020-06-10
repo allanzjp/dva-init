@@ -1,17 +1,12 @@
-import {Button, WingBlank, WhiteSpace, Flex} from 'antd-mobile';
+import {Flex, WhiteSpace, WingBlank} from 'antd-mobile';
 import React from 'react'
-import styles from '../assets/css/home.less'
 import logo from "../assets/images/home_txt.png"
+import styles from "../assets/css/home.less"
 
-const PlaceHolder = ({className = '', ...restProps}) => (
-  <Button></Button>
-);
-
-class MyMean extends React.Component {
-
+export class Header extends React.Component {
   render() {
     return (
-      <div className={styles['animate-route']}>
+      <div>
         {/* navbar */}
         <WhiteSpace size={"xl"}/>
         <WingBlank style={{flex: 1}}>
@@ -20,12 +15,13 @@ class MyMean extends React.Component {
           <Flex justify="center">
             <img src={logo} width={'200px'} alt="logo"/>
           </Flex>
-          
         </WingBlank>
+        <WhiteSpace size={"xl"}/>
       </div>
     )
-
   }
 }
 
-export default MyMean
+export const PlaceHolder = ({className = '', onClick, content='', ...restProps}) => (
+  <div className={`${className} ${styles.placeholder}`} onClick={onClick} {...restProps}>{content}</div>
+);

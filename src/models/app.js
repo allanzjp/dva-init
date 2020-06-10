@@ -1,3 +1,8 @@
+import {routerRedux} from 'dva/router';
+import {agreement, agreements, employeeInfo, employeeUpdate, getAuthUrl, getSignUrl, login, logout} from "../services/service"
+import {removeToken, setToken} from "../utils/cookies"
+import {getPageQuery} from "../utils/utils"
+
 export default {
   namespace: 'app',
   state: {
@@ -9,39 +14,68 @@ export default {
     departDate: '',
     returnDate: ''
   },
-  subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
-      // router 传递的参数包括query, state都在此处history.localtion
-      return history.listen(({ pathname }) => {
-        switch (pathname) {
-          case '/':
-            console.log('home page... do something here', history.location)
-            break;
-          case '/result':
-            console.log('result page... do something here', history.location)
-            break;
-          case '/book':
-            console.log('book page... do something here', history.location)
-            break;
-          case '/complete':
-            console.log('complete page... do something here', history.location)
-            break;
-          default:
-            break;
-        }
-      })
-    },
-  },
+
   // 异步，相当于vuex actions
   effects: {
-    * fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
+
+    * login({payload}, {call}) {
+      let response = yield call(login, payload)
+      if (response.data.code === 200) {
+        setToken(response.data.token)
+      }
+      return response
+    },
+    // *loginOut(_, { put , call}){
+    //   const response = yield call(logout);
+    //   yield put({type: 'changeLoginStatus',
+    //     payload: {
+    //       status: false,
+    //       currentAuthority: 'guest',
+    //     },
+    //   });
+    //   removeToken();
+    //   const { redirect } = getPageQuery();
+    //   if (window.location.pathname !== '/user/login' && !redirect) {
+    //     yield put(routerRedux.push('/login'))
+    //     window.location.reload();
+    //   }  else {
+    //     window.location.reload();
+    //   }
+    // },
+
+    * agreements({payload}, {call}) {
+      return yield call(agreements, payload)
+    },
+
+    * agreement({payload}, {call}) {
+      return yield call(agreement, payload)
+    },
+
+    * employeeInfo({payload}, {call}) {
+      return yield call(employeeInfo, payload)
+    },
+
+    * employeeUpdate({payload}, {call}) {
+      return yield call(employeeUpdate, payload)
+    },
+
+    * getAuthUrl({payload}, {call}) {
+      return yield call(getAuthUrl, payload)
+    },
+
+    * getSignUrl({payload}, {call}) {
+      return yield call(getSignUrl, payload)
+    },
+
+    * fetch({payload}, {call, put}) {  // eslint-disable-line
+      return yield put({type: 'save'});
     }
   },
   // 同步更新state，相当于 Vuex mutations
   reducers: {
-    updateState(state, { payload }) {
-      return { ...state, ...payload };
+    updateState(state, {payload}) {
+      // debugger
+      return {...state, ...payload};
     },
   },
 

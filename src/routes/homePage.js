@@ -1,12 +1,9 @@
 import React from 'react'
-import { connect } from 'dva'
-import { Button, Flex, WingBlank, WhiteSpace } from 'antd-mobile'
-import Place from '../components/place'
-import CalendarSelect from '../components/calendarSelect'
+import {connect} from 'dva'
+import {Link, routerRedux} from 'dva/router'
+import {Button, Flex, WhiteSpace, WingBlank} from 'antd-mobile'
 import styles from '../assets/css/home.less'
-import logo from '../assets/images/logo-light.jpg'
-import { ipInfo } from '../services/service'
-import { routerRedux } from 'dva/router'
+import logo from '../assets/images/home_txt.png'
 
 class homePage extends React.Component {
   constructor(props) {
@@ -18,50 +15,55 @@ class homePage extends React.Component {
     }
     this.closeModule = this.closeModule.bind(this)
   }
-  closeModule({ stateName, status }) {
+
+  closeModule({stateName, status}) {
     this.setState({
       [stateName]: !this.state.showDate
     })
   }
+
   componentDidMount() {
-    ipInfo().then(res => {
-      this.props.dispatch({
-        type: 'app/updateState',
-        payload: {
-          ipInfo: res.data
-        }
-      })
-    })
   }
+
   render() {
     return (
       <div className={styles['animate-route']}>
         {/* navbar */}
-        <WhiteSpace />
-        <WingBlank style={{ flex: 1 }}>
-          <WhiteSpace size="xl" />
+        <WhiteSpace size={"xl"}/>
+        <WingBlank style={{flex: 1}}>
+          <WhiteSpace size="xl"/>
           {/* logo */}
           <Flex justify="center">
-            <img src={logo} width={'200px'} alt="logo" />
+            <img src={logo} width={'200px'} alt="logo"/>
           </Flex>
-          <WhiteSpace size="xl" />
-          {/* 出发地目的地输入框 */}
-          <Place></Place>
-          <WhiteSpace size="xl" />
-          {/* 日历选择 */}
-          <CalendarSelect></CalendarSelect>
-          <WhiteSpace size="xl" />
-          <Button
-            onClick={() => {
-              this.props.dispatch(
-                routerRedux.push({ pathname: 'result' })
-              )
-            }}
-            type="primary"
-            className={styles.searchBtn}
-          >
-            Search
-          </Button>
+          <div style={{padding: '15px 0'}}>
+
+            <WhiteSpace size={"xl"}/>
+            <WingBlank size="md"><Button onClick={() => {
+              this.props.dispatch(routerRedux.push('/login'))
+            }}>登录</Button></WingBlank>
+
+            <WhiteSpace size="xl"/>
+            <WingBlank size="md"><Button onClick={() => {
+              this.props.dispatch(routerRedux.push('/info'))
+            }}>我的信息</Button></WingBlank>
+
+            <WhiteSpace size="xl"/>
+            <WingBlank size="md"><Button onClick={() => {
+              this.props.dispatch(routerRedux.push('/agreement'))
+            }}>我的协议</Button></WingBlank>
+
+            <WhiteSpace size="xl"/>
+            <WingBlank size="md"><Button onClick={() => {
+              this.props.dispatch(routerRedux.push('/sign'))
+            }}>签署协议</Button></WingBlank>
+
+            {/*<WhiteSpace size="xl"/>*/}
+            {/*<WingBlank size="md">*/}
+              {/*<Link to={'login'}>测试</Link>*/}
+            {/*</WingBlank>*/}
+
+          </div>
         </WingBlank>
       </div>
     )
