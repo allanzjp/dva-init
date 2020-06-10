@@ -133,9 +133,7 @@ class signPage extends React.Component {
               <Flex.Item/>
               <Flex.Item/>
               <Flex.Item>
-                <PlaceHolder className={styles["sign-font"]} content={`去认证`} onClick={() => {
-                  this.goAuth()
-                }}/>
+                {this.state.record.isAuth==='N'?<PlaceHolder className={styles["sign-font"]} content={`去认证`} onClick={() => {this.goAuth()}}/>:''}
               </Flex.Item>
             </Flex>
           </Card>

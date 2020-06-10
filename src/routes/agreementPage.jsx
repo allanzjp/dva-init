@@ -58,8 +58,7 @@ class agreementPage extends React.Component {
       <WingBlank size="lg" key={item.id}>
         <WhiteSpace size="lg"/>
         <Card className={styles["agreement-card"]}>
-          <Card.Header title="文德数慧科技有限公司" style={{fontSize: '16px'}} // extra={<span>this is extra</span>}
-          />
+          <Card.Header title="文德数慧科技有限公司" style={{fontSize: '16px'}}/>
           <Card.Body className={styles["agreement-card-body"]}>
             <Flex>
               <Flex.Item><PlaceHolder content={'状态'}/></Flex.Item>
@@ -78,8 +77,7 @@ class agreementPage extends React.Component {
               <Flex.Item><PlaceHolder content={item.contractNo}/></Flex.Item>
             </Flex>
           </Card.Body>
-          <Card.Footer
-            extra={<PlaceHolder content={'立即签署'} className={styles["sign-font"]} onClick={() => {this.submit(item.id)}}/>}/>
+          {item.signStatus===0?<Card.Footer extra={<PlaceHolder content={'立即签署'} className={styles["sign-font"]} onClick={() => {this.submit(item.id)}}/>}/>:""}
         </Card>
       </WingBlank>
     );
