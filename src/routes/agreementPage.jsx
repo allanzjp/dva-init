@@ -84,10 +84,12 @@ class agreementPage extends React.Component {
       </WingBlank>
     );
 
+    // debugger
+    // console.log(ListItems.length)
     return (
       <div className={styles['animate-route']}>
         <Header/>
-        {ListItems}
+        {ListItems.length===0?<WingBlank><Card className={styles["sign-card"]}><PlaceHolder className={styles.fontCenter} content="暂无数据"/></Card></WingBlank>:ListItems}
       </div>
     )
   }

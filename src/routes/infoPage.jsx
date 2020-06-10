@@ -145,8 +145,8 @@ class infoPage extends React.Component {
                                                this.edit()
                                              }}/>}/>
             <Card.Body className={styles["agreement-card-body"]}>
-              <PlaceHolder className={this.state.display}
-                           content={this.state.bankCard?.replace(/(\d{4})(?=\d)/g, "$1 ")}/>
+              {this.state.bankCard?<PlaceHolder className={this.state.display} content={this.state.bankCard?.replace(/(\d{4})(?=\d)/g, "$1 ")}/>
+                :<PlaceHolder className={this.state.display} content="暂无信息"/>}
               <InputItem {...getFieldProps('bankCard')}
                          className={`${this.state.editDisplay} ${styles["info-input"]}`}
                          type={'bankCard'}
@@ -160,7 +160,8 @@ class infoPage extends React.Component {
           <Card className={styles.card}>
             <Card.Header title="身份证号"/>
             <Card.Body className={styles["card-body"]}>
-              <PlaceHolder className={this.state.display} content={this.state.cardNum}/>
+              {this.state.cardNum?<PlaceHolder className={this.state.display} content={this.state.cardNum}/>
+                :<PlaceHolder className={this.state.display} content="暂无信息"/>}
               <InputItem {...getFieldProps('cardNum')}
                          className={`${this.state.editDisplay}  ${styles["info-input"]}`}
                          type={'number'}
