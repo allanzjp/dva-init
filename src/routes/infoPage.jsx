@@ -43,7 +43,10 @@ class infoPage extends React.Component {
 
   componentDidMount() {
     this.employee_query()
-    this.cancel()
+    this.setState({
+      display: styles.show,
+      editDisplay: styles.hidden,
+    })
   }
 
   //协议模版查询
@@ -61,7 +64,7 @@ class infoPage extends React.Component {
           cardNum: res.data.data.cardNum,
         });
       } else {
-        Toast.fail(res.data.msg)
+        // Toast.fail(res.data.msg)
       }
     })
   };

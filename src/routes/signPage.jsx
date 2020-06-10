@@ -35,7 +35,7 @@ class signPage extends React.Component {
           record: res.data.data,
         });
       } else {
-        Toast.fail(res.data.msg)
+        // Toast.fail(res.data.msg)
       }
     })
 

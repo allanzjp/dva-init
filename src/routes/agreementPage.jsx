@@ -35,7 +35,6 @@ class agreementPage extends React.Component {
     let pageData = {
       pageNum: 1,
       pageSize: 100,
-      employeeId: 11,
     };
 
     let type = 'app/agreements'
@@ -48,7 +47,7 @@ class agreementPage extends React.Component {
           rows: res.data.rows,
         });
       } else {
-        Toast.fail(res.data.msg)
+        // Toast.fail(res.data.msg)
       }
     })
   };

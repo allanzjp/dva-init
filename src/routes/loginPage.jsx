@@ -17,7 +17,6 @@ class loginPage extends React.Component {
     this.props.form.validateFields((error, value) => {
       console.log(error, value);
       this.login(value)
-
     });
   }
 
@@ -30,7 +29,7 @@ class loginPage extends React.Component {
       payload: value,
     }).then(res => {
       if (res.data.code === 200) {
-        this.props.dispatch(routerRedux.push('/'))
+        this.props.dispatch(routerRedux.push('/info'))
       } else {
         Toast.fail(res.data.msg)
       }
@@ -49,8 +48,8 @@ class loginPage extends React.Component {
             <InputItem
               {...getFieldProps('username')}
               type="username"
-              placeholder="138 0000 0000"
-            >手机号码</InputItem>
+              placeholder="V00000666"
+            >账号</InputItem>
           </WingBlank>
 
           <WhiteSpace size={"xl"}/>
