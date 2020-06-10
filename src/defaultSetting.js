@@ -1,6 +1,6 @@
 module.exports = {
-  proxyUrl: 'http://localhost:8086',
-  // proxyUrl: 'http://beta.vendetech.com/api',
+  // proxyUrl: 'http://localhost:8086',
+  proxyUrl: 'http://beta.vendetech.com/api',
   base: '/dist',
   title: '工时',
   development: {
