@@ -3,7 +3,7 @@ import styles from "../assets/css/home.less"
 import {Button, Card, Flex, Toast, WhiteSpace, WingBlank} from 'antd-mobile'
 import {connect} from 'dva'
 import {routerRedux} from 'dva/router'
-import {Header, PlaceHolder} from '../components/header'
+import {Header, PlaceHolder, formatSearch} from '../components/header'
 
 
 class signPage extends React.Component {
@@ -14,8 +14,19 @@ class signPage extends React.Component {
   };
 
   componentDidMount() {
-    let state = this.props.location.state
-    this.sign_record_query(state.id)
+    let tmpId = ''
+    if(this.props.location.state) {
+      tmpId = this.props.location.state.id
+    } else {
+      let {search} = this.props.location
+      let searchMap = formatSearch(search)
+      tmpId = Number(searchMap.id)
+    }
+
+    this.setState({
+      id: tmpId
+    })
+    this.sign_record_query(tmpId)
   }
 
   sign_record_query = (id) => {
@@ -61,13 +72,14 @@ class signPage extends React.Component {
   }
 
   goAuth = () => {
-    console.log('auth')
-    let {pathname} = this.props.location
+    let {origin, pathname} = window.location
+    // let {pathname} = this.props.location
+    // console.log(pathname)
     let type = 'app/getAuthUrl'
     this.props.dispatch({
       type,
       payload: {
-        returnUrl: pathname,
+        returnUrl: origin + pathname + '?id=' + this.state.id,
       }
     }).then(res => {
       if (res.data.code === 200) {
@@ -79,7 +91,10 @@ class signPage extends React.Component {
   }
 
   goSign = () => {
-    console.log('goSign')
+    if(this.state.record.isAuth==='N'){
+      Toast.fail("请先完成个人认证再进行电签")
+    }
+
     let {pathname} = this.props.location
     let {contractNo} = this.state.record
     let type = 'app/getSignUrl'

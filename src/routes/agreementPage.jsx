@@ -13,9 +13,15 @@ class agreementPage extends React.Component {
 
   state = {
     rows: [],
+    info: {},
   };
 
   submit = (id) => {
+    if(!this.state.info.bankName || !this.state.info.cardNum) {
+      Toast("银行卡或身份证信息不完整，请前往我的信息中完善。")
+      return;
+    }
+
     console.log(id)
     let type = '/sign'
     let data = {id: id}
@@ -48,6 +54,17 @@ class agreementPage extends React.Component {
         });
       } else {
         // Toast.fail(res.data.msg)
+      }
+    })
+
+    type = 'app/employeeInfo'
+    this.props.dispatch({
+      type,
+    }).then(res => {
+      if (res.data.code === 200) {
+        this.setState({
+          info: res.data.data,
+        });
       }
     })
   };

@@ -22,6 +22,22 @@ export class Header extends React.Component {
   }
 }
 
-export const PlaceHolder = ({className = '', onClick, content='', ...restProps}) => (
+export const PlaceHolder = ({className = '', onClick, content = '', ...restProps}) => (
   <div className={`${className} ${styles.placeholder}`} onClick={onClick} {...restProps}>{content}</div>
 );
+
+export function formatSearch(se) {
+  if (typeof se !== "undefined") {
+    se = se.substr(1);
+    let arr = se.split("&"),
+      obj = {},
+      newArr = [];
+    for (let i = 0; i < arr.length; i++) {
+      newArr = arr[i].split("=");
+      if (typeof obj[newArr[0]] === "undefined") {
+        obj[newArr[0]] = newArr[1];
+      }
+    }
+    return obj;
+  }
+}

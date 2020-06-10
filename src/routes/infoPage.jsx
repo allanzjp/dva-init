@@ -81,7 +81,7 @@ class infoPage extends React.Component {
     this.props.form.validateFields((error, value) => {
       console.log(error, value);
       if (typeof value.bankCard === 'undefined' && typeof value.cardNum === 'undefined') {
-        Toast("沒有变更的信息")
+        Toast.fail("请正确填写信息")
         return;
       }
 
