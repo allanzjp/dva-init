@@ -73,8 +73,6 @@ class signPage extends React.Component {
 
   goAuth = () => {
     let {origin, pathname} = window.location
-    // let {pathname} = this.props.location
-    // console.log(pathname)
     let type = 'app/getAuthUrl'
     this.props.dispatch({
       type,
@@ -95,7 +93,7 @@ class signPage extends React.Component {
       Toast.fail("请先完成个人认证再进行电签")
     }
 
-    let {pathname} = this.props.location
+    let {origin} = window.location
     let {contractNo} = this.state.record
     let type = 'app/getSignUrl'
     this.props.dispatch({
