@@ -59,7 +59,7 @@ class signPage extends React.Component {
           info: res.data.data,
         });
       } else {
-        Toast.fail(res.data.msg)
+        // Toast.fail(res.data.msg)
       }
     })
   };
@@ -101,14 +101,14 @@ class signPage extends React.Component {
     this.props.dispatch({
       type,
       payload: {
-        returnUrl: pathname,
+        returnUrl: origin + '/agreement',
         contractNo: contractNo,
       }
     }).then(res => {
       if (res.data.code === 200) {
         window.location.href = res.data.url
       } else {
-        Toast.fail(res.data.msg)
+        // Toast.fail(res.data.msg)
       }
     })
   }
@@ -132,7 +132,7 @@ class signPage extends React.Component {
 
           <WhiteSpace size="lg"/>
           <Card className={styles["sign-card"]}>
-            <PlaceHolder content={`证件类型: ${this.state.info.cardType}`}/>
+            <PlaceHolder content={`证件类型: ${this.state.info.cardType===1?'身份证':'其他证件类型'}`}/>
             <PlaceHolder content={`身份证号: ${this.state.info.cardNum}`}/>
           </Card>
 
