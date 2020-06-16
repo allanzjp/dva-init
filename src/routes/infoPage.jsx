@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button, Card, InputItem, Toast, WhiteSpace, WingBlank} from 'antd-mobile'
 import {connect} from 'dva'
-import {Header, PlaceHolder} from '../components/header'
+import {Footer, Header, PlaceHolder} from '../components/header'
 import {createForm} from 'rc-form'
 import styles from "../assets/css/home.less"
 import styled from 'styled-components';
@@ -189,6 +189,8 @@ class infoPage extends React.Component {
           {/*<List.Item className={styles.font14} arrow="horizontal">性别</List.Item>*/}
           {/*</Picker>*/}
         </WingBlank>
+
+        <Footer/>
       </div>
     )
   }

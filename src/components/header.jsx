@@ -1,7 +1,11 @@
-import {Flex, WhiteSpace, WingBlank} from 'antd-mobile';
+import {Button, Flex, WhiteSpace, WingBlank} from 'antd-mobile';
 import React from 'react'
 import logo from "../assets/images/home_txt.png"
 import styles from "../assets/css/home.less"
+import {logout} from "../services/service"
+import {removeToken} from "../utils/cookies"
+import {routerRedux} from "dva/router"
+import store from "../index"
 
 export class Header extends React.Component {
   render() {
@@ -17,6 +21,27 @@ export class Header extends React.Component {
           </Flex>
         </WingBlank>
         <WhiteSpace size={"xl"}/>
+      </div>
+    )
+  }
+}
+
+export class Footer extends React.Component {
+  logoutBtn = function () {
+    logout().then((res) => {
+      if(res.data.code === 200) {
+        removeToken()
+        let { dispatch } = store
+        dispatch(routerRedux.push('/login'));
+      }
+    })
+  }
+  render() {
+    return (
+      <div>
+        <WingBlank>
+          <Button className={styles.footer} onClick={this.logoutBtn} type={"primary"}>退出登录</Button>
+        </WingBlank>
       </div>
     )
   }

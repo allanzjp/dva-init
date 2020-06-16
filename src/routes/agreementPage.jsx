@@ -2,7 +2,7 @@ import React from 'react'
 import {Card, Flex, Toast, List, Radio, Picker, Button, WingBlank, WhiteSpace, TextareaItem} from 'antd-mobile'
 import {connect} from 'dva'
 import {routerRedux} from 'dva/router'
-import {Header, PlaceHolder} from '../components/header'
+import {Footer, Header, PlaceHolder} from '../components/header'
 import {createForm} from 'rc-form'
 import formShape from "rc-form/es/propTypes"
 import styles from "../assets/css/home.less"
@@ -102,12 +102,13 @@ class agreementPage extends React.Component {
       </WingBlank>
     );
 
-    // debugger
-    // console.log(ListItems.length)
     return (
       <div className={styles['animate-route']}>
         <Header/>
         {ListItems.length===0?<WingBlank><Card className={styles["sign-card"]}><PlaceHolder className={styles.fontCenter} content="暂无数据"/></Card></WingBlank>:ListItems}
+
+        <WhiteSpace/>
+        <Footer/>
       </div>
     )
   }
