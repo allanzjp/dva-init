@@ -94,7 +94,10 @@ class agreementPage extends React.Component {
               <Flex.Item><PlaceHolder content={item.contractNo}/></Flex.Item>
             </Flex>
           </Card.Body>
-          {item.signStatus===0?<Card.Footer extra={<PlaceHolder content={'立即签署'} className={styles["sign-font"]} onClick={() => {this.submit(item.id)}}/>}/>:""}
+          <Card.Footer extra={item.signStatus === 0 ?
+            <PlaceHolder content={'立即签署'} className={styles["sign-font"]} onClick={() => {this.submit(item.id)}}/>
+            : <a href={item.contractFilePath} target="view_window">点击查看</a>}
+          />
         </Card>
       </WingBlank>
     );

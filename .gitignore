@@ -5,7 +5,11 @@
 
 # production
 /dist
+dist.zip
 
 # misc
 .DS_Store
 npm-debug.log*
+
+# IDE files
+.idea

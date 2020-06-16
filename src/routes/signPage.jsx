@@ -91,6 +91,7 @@ class signPage extends React.Component {
   goSign = () => {
     if(this.state.record.isAuth==='N'){
       Toast.fail("请先完成个人认证再进行电签")
+      return;
     }
 
     let {origin} = window.location
