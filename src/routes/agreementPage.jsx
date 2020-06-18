@@ -1,10 +1,8 @@
 import React from 'react'
-import {Card, Flex, Toast, List, Radio, Picker, Button, WingBlank, WhiteSpace, TextareaItem} from 'antd-mobile'
+import {Card, Flex, Toast, WhiteSpace, WingBlank} from 'antd-mobile'
 import {connect} from 'dva'
 import {routerRedux} from 'dva/router'
 import {Footer, Header, PlaceHolder} from '../components/header'
-import {createForm} from 'rc-form'
-import formShape from "rc-form/es/propTypes"
 import styles from "../assets/css/home.less"
 
 const genders = [{label: '男', value: 0}, {label: '女', value: 1}]
@@ -18,7 +16,8 @@ class agreementPage extends React.Component {
 
   submit = (id) => {
     if(!this.state.info.bankName || !this.state.info.cardNum) {
-      Toast("银行卡或身份证信息不完整，请前往我的信息中完善。")
+      Toast.info("银行卡或身份证信息不完整，请前往我的信息中完善。")
+      // this.props.dispatch(routerRedux.push('/info'))
       return;
     }
 
