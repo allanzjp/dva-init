@@ -5,8 +5,6 @@ import {routerRedux} from 'dva/router'
 import {Footer, Header, PlaceHolder} from '../components/header'
 import styles from "../assets/css/home.less"
 
-const genders = [{label: '男', value: 0}, {label: '女', value: 1}]
-
 class agreementPage extends React.Component {
 
   state = {
@@ -17,7 +15,6 @@ class agreementPage extends React.Component {
   submit = (id) => {
     if(!this.state.info.bankName || !this.state.info.cardNum) {
       Toast.info("银行卡或身份证信息不完整，请前往我的信息中完善。")
-      // this.props.dispatch(routerRedux.push('/info'))
       return;
     }
 
@@ -51,12 +48,13 @@ class agreementPage extends React.Component {
         this.setState({
           rows: res.data.rows,
         });
-      } else {
-        // Toast.fail(res.data.msg)
+        this.info_query()
       }
     })
+  };
 
-    type = 'app/employeeInfo'
+  info_query = () => {
+    let type = 'app/employeeInfo'
     this.props.dispatch({
       type,
     }).then(res => {
@@ -66,7 +64,7 @@ class agreementPage extends React.Component {
         });
       }
     })
-  };
+  }
 
   render() {
     // const {rows} = this.state;

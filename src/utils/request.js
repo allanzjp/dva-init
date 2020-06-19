@@ -61,7 +61,7 @@ axios.interceptors.response.use((response) => {
           text: '重新登录', onPress: () => {
             removeToken()
             let { dispatch } = store
-            dispatch(routerRedux.push('/login'));
+            dispatch(routerRedux.push('/login', {returnUrl: window.location.pathname}));
           }
         },
         {text: '取消', onPress: () => removeToken()}

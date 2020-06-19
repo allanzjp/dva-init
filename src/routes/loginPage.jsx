@@ -1,17 +1,13 @@
 import React from 'react'
 import {Button, InputItem, Toast, WhiteSpace, WingBlank} from 'antd-mobile'
 import {routerRedux} from 'dva/router'
-import {createForm, formShape} from 'rc-form'
+import {createForm} from 'rc-form'
 import {connect} from 'dva'
 import styles from "../assets/css/home.less"
 import {Header} from '../components/header'
 
 
 class loginPage extends React.Component {
-
-  // static propTypes = {
-  //   form: formShape,
-  // };
 
   submit = () => {
     this.props.form.validateFields((error, value) => {
@@ -20,16 +16,16 @@ class loginPage extends React.Component {
     });
   }
 
-
   //协议模版查询
   login = (value) => {
     let type = 'app/login'
+    let returnUrl = this.props.location.state.returnUrl
     this.props.dispatch({
       type,
       payload: value,
     }).then(res => {
       if (res.data.code === 200) {
-        this.props.dispatch(routerRedux.push('/info'))
+        this.props.dispatch(routerRedux.push(returnUrl))
       } else {
         Toast.fail(res.data.msg)
       }
