@@ -95,7 +95,7 @@ class agreementPage extends React.Component {
           </Card.Body>
           <Card.Footer extra={item.signStatus === 0 ?
             <PlaceHolder content={'立即签署'} className={styles["sign-font"]} onClick={() => {this.submit(item.id)}}/>
-            : <a href={item.contractFilePath} target="view_window">点击查看</a>}
+            : <a href={item.contractFilePath} target="root">点击查看(点击下载)</a>}
           />
         </Card>
       </WingBlank>
@@ -105,8 +105,6 @@ class agreementPage extends React.Component {
       <div className={styles['animate-route']}>
         <Header/>
         {ListItems.length===0?<WingBlank><Card className={styles["sign-card"]}><PlaceHolder className={styles.fontCenter} content="暂无数据"/></Card></WingBlank>:ListItems}
-
-        <WhiteSpace/>
         <Footer/>
       </div>
     )

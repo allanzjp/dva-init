@@ -39,9 +39,13 @@ export class Footer extends React.Component {
   render() {
     return (
       <div>
+        <WhiteSpace/>
+        <WhiteSpace/>
         <WingBlank>
           <Button className={styles.footer} onClick={this.logoutBtn} type={"primary"}>退出登录</Button>
         </WingBlank>
+        <WhiteSpace/>
+        <WhiteSpace/>
       </div>
     )
   }
