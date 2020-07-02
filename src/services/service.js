@@ -1,12 +1,12 @@
 import axios from 'axios';
-import {proxyUrl} from '../defaultSetting'
+import {proxyUrl, portalUrl} from '../defaultSetting'
 import request from '../utils/request'
 
 export function ipInfo() {
   return axios.get(proxyUrl);
 }
 export function login (payload) {
-  return axios.post(`${proxyUrl}/login?username=${payload.username}&password=${payload.password}`,)
+  return axios.post(`${portalUrl}/login?username=${payload.username}&password=${payload.password}`,)
 }
 export async function logout(payload) {
   return axios.post(`${proxyUrl}/logout`, payload)
