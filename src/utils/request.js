@@ -54,7 +54,7 @@ axios.interceptors.response.use((response) => {
     return response;
   }
 
-  if (code === 401) {
+  if (code === 302) {
     Modal.alert('系统提示', '登录状态已过期，您可以继续留在该页面，或者重新登录',
       [
         {
